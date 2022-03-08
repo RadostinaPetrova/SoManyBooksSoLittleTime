@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.312" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\SoManyBooksSoLittleTime.Data.Common\SoManyBooksSoLittleTime.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\SoManyBooksSoLittleTime.Data.Models\SoManyBooksSoLittleTime.Data.Models.csproj" />
+    <ProjectReference Include="..\SoManyBooksSoLittleTime.Services.Mapping\SoManyBooksSoLittleTime.Services.Mapping.csproj" />
+  </ItemGroup>
+
+</Project>
