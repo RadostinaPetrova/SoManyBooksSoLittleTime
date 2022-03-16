@@ -1,9 +1,8 @@
 ﻿namespace SoManyBooksSoLittleTime.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using SoManyBooksSoLittleTime.Data.Models;
     using SoManyBooksSoLittleTime.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

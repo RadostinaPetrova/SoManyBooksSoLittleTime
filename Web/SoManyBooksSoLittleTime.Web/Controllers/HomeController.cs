@@ -2,15 +2,32 @@
 {
     using System.Diagnostics;
 
-    using SoManyBooksSoLittleTime.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using SoManyBooksSoLittleTime.Services.Data;
+    using SoManyBooksSoLittleTime.Web.ViewModels;
+    using SoManyBooksSoLittleTime.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
+        private readonly IGetCountsService countService;
+
+        public HomeController(IGetCountsService countService)
+        {
+            this.countService = countService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var countsDto = this.countService.GetCounts();
+            var viewModel = new IndexViewModel
+            {
+                BooksCount = countsDto.BooksCount,
+                AuthorsCount = countsDto.AuthorsCount,
+                GenresCount = countsDto.GenresCount,
+                ImagesCount = countsDto.ImagesCount,
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

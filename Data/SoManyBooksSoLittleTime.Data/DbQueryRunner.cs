@@ -3,9 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    using SoManyBooksSoLittleTime.Data.Common;
-
     using Microsoft.EntityFrameworkCore;
+    using SoManyBooksSoLittleTime.Data.Common;
 
     public class DbQueryRunner : IDbQueryRunner
     {

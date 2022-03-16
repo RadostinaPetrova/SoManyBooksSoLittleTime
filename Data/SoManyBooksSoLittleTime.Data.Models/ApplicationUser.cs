@@ -4,9 +4,8 @@ namespace SoManyBooksSoLittleTime.Data.Models
     using System;
     using System.Collections.Generic;
 
-    using SoManyBooksSoLittleTime.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using SoManyBooksSoLittleTime.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

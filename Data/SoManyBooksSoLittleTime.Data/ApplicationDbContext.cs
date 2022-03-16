@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using SoManyBooksSoLittleTime.Data.Common.Models;
-    using SoManyBooksSoLittleTime.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using SoManyBooksSoLittleTime.Data.Common.Models;
+    using SoManyBooksSoLittleTime.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -25,6 +24,16 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Author> Authors { get; set; }
+
+        public DbSet<Book> Books { get; set; }
+
+        public DbSet<BookGenre> BookGenres { get; set; }
+
+        public DbSet<Genre> Genres { get; set; }
+
+        public DbSet<Image> Images { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

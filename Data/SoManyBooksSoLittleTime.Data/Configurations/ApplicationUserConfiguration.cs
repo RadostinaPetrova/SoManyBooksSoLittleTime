@@ -1,8 +1,8 @@
 ﻿namespace SoManyBooksSoLittleTime.Data.Configurations
 {
-    using SoManyBooksSoLittleTime.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using SoManyBooksSoLittleTime.Data.Models;
 
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

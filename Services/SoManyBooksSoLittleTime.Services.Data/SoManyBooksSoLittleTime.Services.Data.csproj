@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SoManyBooksSoLittleTime.Data.Common\SoManyBooksSoLittleTime.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\SoManyBooksSoLittleTime.Data.Models\SoManyBooksSoLittleTime.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\SoManyBooksSoLittleTime.Web.ViewModels\SoManyBooksSoLittleTime.Web.ViewModels.csproj" />
     <ProjectReference Include="..\SoManyBooksSoLittleTime.Services.Mapping\SoManyBooksSoLittleTime.Services.Mapping.csproj" />
   </ItemGroup>
 

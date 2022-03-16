@@ -2,6 +2,14 @@
 {
     using System.Reflection;
 
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using SoManyBooksSoLittleTime.Data;
     using SoManyBooksSoLittleTime.Data.Common;
     using SoManyBooksSoLittleTime.Data.Common.Repositories;
@@ -12,15 +20,6 @@
     using SoManyBooksSoLittleTime.Services.Mapping;
     using SoManyBooksSoLittleTime.Services.Messaging;
     using SoManyBooksSoLittleTime.Web.ViewModels;
-
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
 
     public class Startup
     {
@@ -65,6 +64,9 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IGetCountsService, GetCountsService>();
+            services.AddTransient<IAuthorsService, AuthorsService>();
+            services.AddTransient<IBooksService, BooksService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,9 +2,8 @@
 {
     using System.Linq;
 
-    using SoManyBooksSoLittleTime.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using SoManyBooksSoLittleTime.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

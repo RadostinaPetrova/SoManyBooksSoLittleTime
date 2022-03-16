@@ -3,9 +3,8 @@ namespace SoManyBooksSoLittleTime.Data.Models
 {
     using System;
 
-    using SoManyBooksSoLittleTime.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using SoManyBooksSoLittleTime.Data.Common.Models;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {
