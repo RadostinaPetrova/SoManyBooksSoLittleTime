@@ -16,6 +16,7 @@
     using SoManyBooksSoLittleTime.Data.Models;
     using SoManyBooksSoLittleTime.Data.Repositories;
     using SoManyBooksSoLittleTime.Data.Seeding;
+    using SoManyBooksSoLittleTime.Services;
     using SoManyBooksSoLittleTime.Services.Data;
     using SoManyBooksSoLittleTime.Services.Mapping;
     using SoManyBooksSoLittleTime.Services.Messaging;
@@ -67,6 +68,7 @@
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<IAuthorsService, AuthorsService>();
             services.AddTransient<IBooksService, BooksService>();
+            services.AddTransient<IGoodReadsScraperService, GoodreadsScraperService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

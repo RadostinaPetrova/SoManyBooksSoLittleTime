@@ -12,7 +12,7 @@ using SoManyBooksSoLittleTime.Data;
 namespace SoManyBooksSoLittleTime.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220316130547_InitialMigration")]
+    [Migration("20220318183229_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -312,8 +312,8 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                     b.Property<DateTime>("Published")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Rating")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Rating")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -397,6 +397,9 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedOn")

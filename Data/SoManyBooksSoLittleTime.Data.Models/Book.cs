@@ -25,7 +25,7 @@
 
         public virtual ApplicationRole User { get; set; }
 
-        public int? Rating { get; set; }
+        public decimal? Rating { get; set; }
 
         public DateTime Published { get; set; }
 

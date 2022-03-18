@@ -224,7 +224,7 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                     AuthorId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Rating = table.Column<int>(type: "int", nullable: true),
+                    Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Published = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ISBN = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -281,6 +281,7 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     BookId = table.Column<int>(type: "int", nullable: false),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
