@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    public interface IGoodReadsScraperService
+    public interface IGoodreadsScraperService
     {
         Task PopulateDbWithBooksAsync(int booksCount);
     }

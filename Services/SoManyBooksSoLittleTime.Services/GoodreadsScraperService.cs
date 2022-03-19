@@ -12,7 +12,7 @@
     using SoManyBooksSoLittleTime.Data.Models;
     using SoManyBooksSoLittleTime.Services.Models;
 
-    public class GoodreadsScraperService : IGoodReadsScraperService
+    public class GoodreadsScraperService : IGoodreadsScraperService
     {
         private readonly IConfiguration config;
         private readonly IBrowsingContext context;
@@ -167,7 +167,15 @@
             book.Rating = decimal.Parse(ratingInput[1].TextContent.Trim());
 
             var isbnData = document.QuerySelectorAll("#bookDataBox > .clearFloats > .infoBoxRowItem");
-            book.ISBN = isbnData[1].FirstChild.TextContent.Trim();
+            var isbnInput = isbnData[1].FirstChild.TextContent.Trim();
+            if (isbnInput.Any(char.IsDigit))
+            {
+                book.ISBN = isbnInput;
+            }
+            else
+            {
+                book.ISBN = null;
+            }
 
             var genres = document.QuerySelectorAll(".bigBoxContent > .elementList > .left");
             foreach (var item in genres)

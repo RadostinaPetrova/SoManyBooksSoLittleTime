@@ -7,9 +7,9 @@
     // TODO: Move in administration area
     public class CollectBooksController : BaseController
     {
-        private readonly IGoodReadsScraperService goodReadsScraperService;
+        private readonly IGoodreadsScraperService goodReadsScraperService;
 
-        public CollectBooksController(IGoodReadsScraperService goodReadsScraperService)
+        public CollectBooksController(IGoodreadsScraperService goodReadsScraperService)
         {
             this.goodReadsScraperService = goodReadsScraperService;
         }

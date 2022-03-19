@@ -68,7 +68,7 @@
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<IAuthorsService, AuthorsService>();
             services.AddTransient<IBooksService, BooksService>();
-            services.AddTransient<IGoodReadsScraperService, GoodreadsScraperService>();
+            services.AddTransient<IGoodreadsScraperService, GoodreadsScraperService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
