@@ -1,0 +1,24 @@
+﻿@model SoManyBooksSoLittleTime.Web.ViewModels.Books.BooksListViewModel
+
+@{
+    this.ViewData["Title"] = "All Books, page " + Model.PageNumber;
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    @foreach(var book in this.Model.Books)
+    {
+        <div class="media col-md-4">
+            <img src="@book.ImageUrl" width="100" class="mr-3" img-responsive>
+            <div class="media-body">
+                <h5 class="mt-0">@book.Title</h5>
+                <p>@book.AuthorName</p>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+
+<partial name="_PagingPartial" model="@Model"/>

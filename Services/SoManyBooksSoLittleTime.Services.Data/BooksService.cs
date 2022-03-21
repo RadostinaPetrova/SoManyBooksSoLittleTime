@@ -1,10 +1,12 @@
 ﻿namespace SoManyBooksSoLittleTime.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using SoManyBooksSoLittleTime.Data.Common.Repositories;
     using SoManyBooksSoLittleTime.Data.Models;
+    using SoManyBooksSoLittleTime.Services.Mapping;
     using SoManyBooksSoLittleTime.Web.ViewModels.Books;
 
     public class BooksService : IBooksService
@@ -18,7 +20,7 @@
             this.genresRepository = genresRepository;
         }
 
-        public async Task CreateAsync(CreateBookInputModel input)
+        public async Task CreateAsync(CreateBookInputModel input, string userId)
         {
             var book = new Book()
             {
@@ -28,6 +30,7 @@
                 Rating = input.Rating,
                 Published = input.Published,
                 ISBN = input.ISBN,
+                UserId = userId,
             };
 
             foreach (var inputGenre in input.Genres)
@@ -47,6 +50,20 @@
 
             await this.booksRepository.AddAsync(book);
             await this.booksRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        {
+            var books = this.booksRepository.AllAsNoTracking()
+              .OrderByDescending(x => x.Id)
+              .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+              .To<T>().ToList();
+            return books;
+        }
+
+        public int GetCount()
+        {
+            return this.booksRepository.All().Count();
         }
     }
 }
