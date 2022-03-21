@@ -5,11 +5,11 @@
     using SoManyBooksSoLittleTime.Services;
 
     // TODO: Move in administration area
-    public class CollectBooksController : BaseController
+    public class ImportBooksController : BaseController
     {
         private readonly IGoodreadsScraperService goodReadsScraperService;
 
-        public CollectBooksController(IGoodreadsScraperService goodReadsScraperService)
+        public ImportBooksController(IGoodreadsScraperService goodReadsScraperService)
         {
             this.goodReadsScraperService = goodReadsScraperService;
         }

@@ -65,6 +65,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<IAuthorsService, AuthorsService>();
             services.AddTransient<IBooksService, BooksService>();
