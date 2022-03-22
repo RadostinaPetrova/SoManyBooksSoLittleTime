@@ -23,7 +23,7 @@
 
         public string UserId { get; set; }
 
-        public virtual ApplicationRole User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public decimal? Rating { get; set; }
 
@@ -31,7 +31,7 @@
 
         public string ISBN { get; set; }
 
-        public ICollection<BookGenre> Genres { get; set; }
+        public virtual ICollection<BookGenre> Genres { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
     }

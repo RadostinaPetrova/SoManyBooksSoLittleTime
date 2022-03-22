@@ -59,11 +59,16 @@
                 return this.View(input);
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction("All");
         }
 
         public IActionResult All(int id = 1)
         {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
             const int ItemsPerPage = 12;
 
             var viewModel = new BooksListViewModel

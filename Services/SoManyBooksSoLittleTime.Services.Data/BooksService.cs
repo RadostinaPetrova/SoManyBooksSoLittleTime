@@ -13,7 +13,6 @@
 
     public class BooksService : IBooksService
     {
-
         private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Book> booksRepository;
         private readonly IDeletableEntityRepository<Genre> genresRepository;
@@ -26,7 +25,7 @@
 
         public async Task CreateAsync(CreateBookInputModel input, string userId, string imagePath)
         {
-            var book = new Book()
+            var book = new Book
             {
                 Title = input.Title,
                 AuthorId = input.AuthorId,
@@ -57,7 +56,7 @@
             {
                 var extension = Path.GetExtension(image.FileName).TrimStart('.');
 
-                if (!allowedExtensions.Any(x => extension.EndsWith(x)))
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
                 {
                     throw new System.Exception($"Invalid image extension {extension}");
                 }
