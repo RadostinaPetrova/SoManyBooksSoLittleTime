@@ -74,15 +74,8 @@
                 await image.CopyToAsync(fileStream);
             }
 
-            try
-            {
-                await this.booksRepository.AddAsync(book);
-                await this.booksRepository.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.InnerException.Message);
-            }
+            await this.booksRepository.AddAsync(book);
+            await this.booksRepository.SaveChangesAsync();
         }
 
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)

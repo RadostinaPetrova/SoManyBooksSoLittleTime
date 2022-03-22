@@ -50,7 +50,7 @@
 
             try
             {
-                await this.booksService.CreateAsync(input, user.Id, $"{this.environment.ContentRootPath}/images");
+                await this.booksService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
             }
             catch (Exception ex)
             {
