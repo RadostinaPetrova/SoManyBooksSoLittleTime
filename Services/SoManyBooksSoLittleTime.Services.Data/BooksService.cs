@@ -1,6 +1,8 @@
 ﻿namespace SoManyBooksSoLittleTime.Services.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -11,6 +13,8 @@
 
     public class BooksService : IBooksService
     {
+
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Book> booksRepository;
         private readonly IDeletableEntityRepository<Genre> genresRepository;
 
@@ -20,7 +24,7 @@
             this.genresRepository = genresRepository;
         }
 
-        public async Task CreateAsync(CreateBookInputModel input, string userId)
+        public async Task CreateAsync(CreateBookInputModel input, string userId, string imagePath)
         {
             var book = new Book()
             {
@@ -48,8 +52,37 @@
                 });
             }
 
-            await this.booksRepository.AddAsync(book);
-            await this.booksRepository.SaveChangesAsync();
+            Directory.CreateDirectory($"{imagePath}/books/");
+            foreach (var image in input.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+
+                if (!allowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new System.Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new Image
+                {
+                    UserId = userId,
+                    Extension = extension,
+                };
+                book.Images.Add(dbImage);
+
+                var physicalPath = $"{imagePath}/books/{dbImage.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(fileStream);
+            }
+
+            try
+            {
+                await this.booksRepository.AddAsync(book);
+                await this.booksRepository.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.InnerException.Message);
+            }
         }
 
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)

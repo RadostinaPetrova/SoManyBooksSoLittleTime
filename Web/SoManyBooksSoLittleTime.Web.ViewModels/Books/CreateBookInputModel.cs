@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using SoManyBooksSoLittleTime.Data.Models;
+    using Microsoft.AspNetCore.Http;
 
     public class CreateBookInputModel
     {
@@ -29,6 +29,8 @@
 
         // TODO: Write custom validator
         public string ISBN { get; set; }
+
+        public IEnumerable<IFormFile> Images { get; set; }
 
         public IEnumerable<BookGenreInputModel> Genres { get; set; }
 

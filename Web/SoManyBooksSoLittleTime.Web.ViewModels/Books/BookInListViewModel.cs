@@ -19,11 +19,11 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Book, BookInListViewModel>()
-                .ForMember(x=> x.ImageUrl, opt => 
-                opt.MapFrom(x =>
-                        x.Images.FirstOrDefault().ImageUrl != null ?
-                        x.Images.FirstOrDefault().ImageUrl :
-                        "/images/recipes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
+                .ForMember(x => x.ImageUrl, opt =>
+                 opt.MapFrom(x =>
+                         x.Images.FirstOrDefault().ImageUrl != null ?
+                         x.Images.FirstOrDefault().ImageUrl :
+                         "/images/recipes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
         }
     }
 }

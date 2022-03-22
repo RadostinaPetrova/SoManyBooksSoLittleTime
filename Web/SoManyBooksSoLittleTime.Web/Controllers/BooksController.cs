@@ -1,9 +1,11 @@
 ﻿namespace SoManyBooksSoLittleTime.Web.Controllers
 {
+    using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using SoManyBooksSoLittleTime.Data.Models;
@@ -15,12 +17,14 @@
         private readonly IAuthorsService authorsService;
         private readonly IBooksService booksService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IWebHostEnvironment environment;
 
-        public BooksController(IAuthorsService authorsService, IBooksService booksService, UserManager<ApplicationUser> userManager)
+        public BooksController(IAuthorsService authorsService, IBooksService booksService, UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
         {
             this.authorsService = authorsService;
             this.booksService = booksService;
             this.userManager = userManager;
+            this.environment = environment;
         }
 
         [Authorize]
@@ -43,7 +47,17 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.booksService.CreateAsync(input, user.Id);
+
+            try
+            {
+                await this.booksService.CreateAsync(input, user.Id, $"{this.environment.ContentRootPath}/images");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                input.Authors = this.authorsService.GetAllAuthorsAsKeyValuePairs();
+                return this.View(input);
+            }
 
             return this.Redirect("/");
         }

@@ -7,7 +7,7 @@
 
     public interface IBooksService
     {
-        Task CreateAsync(CreateBookInputModel input, string userId);
+        Task CreateAsync(CreateBookInputModel input, string userId, string imagePath);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
 
