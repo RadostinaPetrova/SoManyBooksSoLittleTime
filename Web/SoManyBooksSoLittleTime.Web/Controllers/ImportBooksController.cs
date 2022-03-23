@@ -8,11 +8,11 @@
     // TODO: Move in administration area
     public class ImportBooksController : BaseController
     {
-        private readonly IGoodreadsScraperService goodReadsScraperService;
+        private readonly IGoodreadsScraperService goodreadsScraperService;
 
-        public ImportBooksController(IGoodreadsScraperService goodReadsScraperService)
+        public ImportBooksController(IGoodreadsScraperService goodreadsScraperService)
         {
-            this.goodReadsScraperService = goodReadsScraperService;
+            this.goodreadsScraperService = goodreadsScraperService;
         }
 
         public IActionResult Index()
@@ -22,7 +22,7 @@
 
         public async Task<IActionResult> Add()
         {
-            await this.goodReadsScraperService.PopulateDbWithBooksAsync(100);
+            await this.goodreadsScraperService.PopulateDbWithBooksAsync(100);
 
             return this.Redirect("/");
         }

@@ -8,6 +8,8 @@
 
     public class BookInListViewModel : IMapFrom<Book>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public string ImageUrl { get; set; }
 
         public string Title { get; set; }

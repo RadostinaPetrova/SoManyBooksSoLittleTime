@@ -12,7 +12,7 @@ using SoManyBooksSoLittleTime.Data;
 namespace SoManyBooksSoLittleTime.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220319151937_InitialMigration")]
+    [Migration("20220323074432_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -509,7 +509,7 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SoManyBooksSoLittleTime.Data.Models.ApplicationRole", "User")
+                    b.HasOne("SoManyBooksSoLittleTime.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 

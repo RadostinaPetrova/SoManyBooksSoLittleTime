@@ -236,9 +236,9 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Books_AspNetRoles_UserId",
+                        name: "FK_Books_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetRoles",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Books_Authors_AuthorId",
@@ -429,16 +429,16 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 name: "Settings");
 
             migrationBuilder.DropTable(
-                name: "Genres");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Authors");

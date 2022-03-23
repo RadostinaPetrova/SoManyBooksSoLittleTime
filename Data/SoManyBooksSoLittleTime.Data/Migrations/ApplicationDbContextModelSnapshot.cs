@@ -507,7 +507,7 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SoManyBooksSoLittleTime.Data.Models.ApplicationRole", "User")
+                    b.HasOne("SoManyBooksSoLittleTime.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
