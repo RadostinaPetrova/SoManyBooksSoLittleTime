@@ -1,0 +1,43 @@
+﻿@using SoManyBooksSoLittleTime.Web.ViewModels.Books
+@model SingleBookViewModel
+@{
+    this.ViewData["Title"] = Model.Title;
+}
+
+<section class="light">
+    <div class="container py-2">
+        <div class="h1 text-center text-dark" id="pageHeaderTitle">@this.ViewData["Title"]</div>
+        <article class="postcard light red">
+            <a class="postcard__img_link" href="#">
+                <img class="postcard__img" src="@Model.ImageUrl" alt="@Model.Title" />
+            </a>
+            <div class="postcard__text t-dark">
+                <h1 class="postcard__title red"><a href="#">By @Model.AuthorName</a></h1>
+                <div class="postcard__subtitle small">
+                    <time datetime="DD.MM.YYYY">
+                        <i class="fas fa-calendar-alt mr-2"></i>Published: @Model.Published.ToShortDateString()
+                    </time>
+                    <a> Raiting: @Model.Rating</a>
+                </div>
+                <div class="postcard__bar"></div>
+                <div class="postcard__preview-txt">@Model.Description</div>
+                <ul class="postcard__tagbox">
+                    @foreach (var item in Model.Genres)
+                    {
+                        <li class="tag__item"><i class="fas fa-tag mr-2"></i>@item.GenreName</li>
+                    }
+                    <li class="tag__item"><i class="fas fa-clock mr-2"></i></li>
+                </ul>
+                <ul class="postcard__tagbox">
+                    <li class="tag__item play red">
+                        <i class="fas fa-play mr-2"></i>Added by: @(Model.UserUserName ?? "Admin")
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</section>
+
+@section css {
+<link href="@Url.Content("~/css/style.css")" rel="stylesheet" />
+}

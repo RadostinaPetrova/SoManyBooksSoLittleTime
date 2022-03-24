@@ -81,5 +81,11 @@
 
             return this.View(viewModel);
         }
+
+        public IActionResult ById(int id)
+        {
+            var book = this.booksService.GetById<SingleBookViewModel>(id);
+            return this.View(book);
+        }
     }
 }

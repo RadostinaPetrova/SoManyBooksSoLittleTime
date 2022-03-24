@@ -4,7 +4,7 @@
     this.ViewData["Title"] = "All Books, page " + Model.PageNumber;
 }
 
-<h1>@this.ViewData["Title"]</h1>
+<h1 class="text-dark">@this.ViewData["Title"]</h1>
 
 <hr />
 <div class="row">
@@ -13,8 +13,8 @@
         <div class="media col-md-4">
             <img src="@book.ImageUrl" width="100" class="mr-3" img-responsive>
             <div class="media-body">
-                <h5 class="mt-0">@book.Title</h5>
-                <p>@book.AuthorName</p>
+                <h5 class="mt-0"><a asp-action="ById" asp-route-id="@book.Id">@book.Title</a></h5>
+                <p class="text-dark">@book.AuthorName</p>
             </div>
         </div>
     }

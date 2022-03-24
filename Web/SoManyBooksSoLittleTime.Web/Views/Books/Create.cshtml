@@ -4,47 +4,46 @@
     var authors = this.Model.Authors.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-
 <form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
-    <h1 class="text-center">@this.ViewData["Title"]</h1>
-    <h4 class="text-center">We have a missing book? Feel free to add it! :)</h4>
+    <h1 class="text-center text-dark">@this.ViewData["Title"]</h1>
+    <h4 class="text-center text-dark">We have a missing book? Feel free to add it! :)</h4>
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="Title"></label>
+        <label asp-for="Title" class="text-dark"></label>
         <input asp-for="Title" class="form-control" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="AuthorId"></label>
+        <label asp-for="AuthorId" class="text-dark"></label>
         <select asp-for="AuthorId" class="form-control" asp-items="authors" ></select>
         <span asp-validation-for="AuthorId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Description"></label>
+        <label asp-for="Description" class="text-dark"></label>
         <textarea asp-for="Description" class="form-control" rows="5"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Published"></label>
+        <label asp-for="Published" class="text-dark"></label>
         <input asp-for="Published" class="form-control" />
         <span asp-validation-for="Published" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Rating"></label>
+        <label asp-for="Rating" class="text-dark"></label>
         <input asp-for="Rating" class="form-control" />
         <span asp-validation-for="Rating" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="ISBN"></label>
+        <label asp-for="ISBN" class="text-dark"></label>
         <input asp-for="ISBN" class="form-control" />
         <span asp-validation-for="ISBN" class="text-danger"></span>
     </div>
     <div id="GenreContainer">
-        <label asp-for="Genres"></label>
+        <label asp-for="Genres" class="text-dark"></label>
         <a class="btn btn-success" onclick="AddGenre()">+</a>      
     </div>
     <div class="form-group">
-        <label asp-for="Images"></label>
+        <label asp-for="Images" class="text-dark"></label>
         <input asp-for="Images" class="form-control">
         <span asp-validation-for="Images" class="text-danger"></span>
     </div>

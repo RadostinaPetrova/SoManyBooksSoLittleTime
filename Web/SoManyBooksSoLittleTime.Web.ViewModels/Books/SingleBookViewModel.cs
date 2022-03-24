@@ -1,26 +1,35 @@
 ﻿namespace SoManyBooksSoLittleTime.Web.ViewModels.Books
 {
-    using System.Linq;
-
     using AutoMapper;
     using SoManyBooksSoLittleTime.Data.Models;
     using SoManyBooksSoLittleTime.Services.Mapping;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public class BookInListViewModel : IMapFrom<Book>, IHaveCustomMappings
+    public class SingleBookViewModel : IMapFrom<Book>, IHaveCustomMappings
     {
-        public int Id { get; set; }
-
-        public string ImageUrl { get; set; }
-
         public string Title { get; set; }
-
-        public int AuthorId { get; set; }
 
         public string AuthorName { get; set; }
 
+        public string UserUserName { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public string Description { get; set; }
+
+        public decimal Rating { get; set; }
+
+        public DateTime Published { get; set; }
+
+        public string ISBN { get; set; }
+
+        public IEnumerable<GenresViewModel> Genres { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Book, BookInListViewModel>()
+            configuration.CreateMap<Book, SingleBookViewModel>()
                 .ForMember(x => x.ImageUrl, opt =>
                  opt.MapFrom(x =>
                          x.Images.FirstOrDefault().ImageUrl != null ?

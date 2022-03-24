@@ -86,6 +86,13 @@
             return books;
         }
 
+        public T GetById<T>(int id)
+        {
+            var book = this.booksRepository.AllAsNoTracking().Where(x => x.Id == id).To<T>().FirstOrDefault();
+
+            return book;
+        }
+
         public int GetCount()
         {
             return this.booksRepository.All().Count();
