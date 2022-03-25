@@ -1,11 +1,12 @@
 ﻿namespace SoManyBooksSoLittleTime.Web.ViewModels.Books
 {
-    using AutoMapper;
-    using SoManyBooksSoLittleTime.Data.Models;
-    using SoManyBooksSoLittleTime.Services.Mapping;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using AutoMapper;
+    using SoManyBooksSoLittleTime.Data.Models;
+    using SoManyBooksSoLittleTime.Services.Mapping;
 
     public class SingleBookViewModel : IMapFrom<Book>, IHaveCustomMappings
     {

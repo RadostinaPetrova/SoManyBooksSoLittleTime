@@ -4,6 +4,10 @@
     this.ViewData["Title"] = Model.Title;
 }
 
+@section Css{
+    <link rel="stylesheet" href="~/css/styleBookById.css" asp-append-version="true" />
+}
+
 <section class="light">
     <div class="container py-2">
         <div class="h1 text-center text-dark" id="pageHeaderTitle">@this.ViewData["Title"]</div>
@@ -36,7 +40,3 @@
         </article>
     </div>
 </section>
-
-@section css {
-<link href="@Url.Content("~/css/style.css")" rel="stylesheet" />
-}
