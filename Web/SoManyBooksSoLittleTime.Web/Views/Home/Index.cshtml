@@ -4,15 +4,53 @@
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@section Css{
+<link rel="stylesheet" href="~/css/bookFlip.css" asp-append-version="true" />
+}
+
+<div class="text-center row">
     <h1 class="display-4 text-dark">Welcome to @GlobalConstants.SystemName!</h1>
-    <div class="col-md-4 offset-md-4">
-    <p class="text-dark">We have:</p>
-    <ul class="list-group">
-        <li class="list-group-item text-dark">Books: @Model.BooksCount</li>
-        <li class="list-group-item text-dark">Authors: @Model.AuthorsCount</li>
-        <li class="list-group-item text-dark">Genres: @Model.GenresCount</li>
-        <li class="list-group-item text-dark">Images: @Model.ImagesCount</li>
-    </ul>
+    <div class="col-md-8">
+        <div class="row">
+            @foreach (var book in this.Model.RandomBooks)
+            {
+                <div class="container col-md-6 bookFlip">
+                    <div class="info bookFlip">
+                    </div>
+                    <div class="bookFlip mobile-layout">
+                        <div class="bookFlip notification-header">
+                        </div>
+                        <div class="bookFlip book-cover">
+                            <img class="book-top bookFlip" src="@book.ImageUrl" alt="book-image" />
+                        </div>
+                        <div class="preface bookFlip">
+                            <div class="content bookFlip">
+                                <div class="header bookFlip">
+                                    <div class="title bookFlip">@book.Title</div>
+                                    <div class="icon bookFlip">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                <div class="author bookFlip">by @book.AuthorName</div>
+                                <div class="body bookFlip">
+                                    <p class="bookFlip">
+                                        @book.Description ...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        <p class="text-dark">We have:</p>
+        <ul class="list-group">
+            <li class="list-group-item text-dark">Books: @Model.BooksCount</li>
+            <li class="list-group-item text-dark">Authors: @Model.AuthorsCount</li>
+            <li class="list-group-item text-dark">Genres: @Model.GenresCount</li>
+            <li class="list-group-item text-dark">Images: @Model.ImagesCount</li>
+        </ul>
     </div>
 </div>

@@ -10,10 +10,12 @@
     public class HomeController : BaseController
     {
         private readonly IGetCountsService countService;
+        private readonly IBooksService booksService;
 
-        public HomeController(IGetCountsService countService)
+        public HomeController(IGetCountsService countService, IBooksService booksService)
         {
             this.countService = countService;
+            this.booksService = booksService;
         }
 
         public IActionResult Index()
@@ -25,6 +27,7 @@
                 AuthorsCount = countsDto.AuthorsCount,
                 GenresCount = countsDto.GenresCount,
                 ImagesCount = countsDto.ImagesCount,
+                RandomBooks = this.booksService.GetRandom<IndexPageBookViewModel>(10),
             };
 
             return this.View(viewModel);
