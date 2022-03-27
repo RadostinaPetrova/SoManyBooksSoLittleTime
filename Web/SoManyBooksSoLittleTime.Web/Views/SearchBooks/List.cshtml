@@ -1,7 +1,8 @@
-﻿@model SoManyBooksSoLittleTime.Web.ViewModels.Books.BooksListViewModel
+﻿@using SoManyBooksSoLittleTime.Web.ViewModels.SearchBooks
+@model ListViewModel
 
 @{
-    this.ViewData["Title"] = "All Books, page " + Model.PageNumber;
+    ViewData["Title"] = "Search result";
 }
 
 <h1 class="text-dark">@this.ViewData["Title"]</h1>
@@ -13,12 +14,10 @@
         <div class="media col-md-4">
             <img src="@book.ImageUrl" width="100" class="mr-3" img-responsive>
             <div class="media-body">
-                <h5 class="mt-0"><a asp-action="ById" asp-route-id="@book.Id">@book.Title</a></h5>
+                <h5 class="mt-0"><a asp-controller="Books" asp-action="ById" asp-route-id="@book.Id">@book.Title</a></h5>
                 <p class="text-dark">@book.AuthorName</p>
             </div>
         </div>
     }
 </div>
 <hr />
-
-<partial name="_PagingPartial" model="@Model" />

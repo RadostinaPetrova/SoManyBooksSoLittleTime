@@ -9,12 +9,12 @@
 }
 
 <div class="text-center row">
-    <h1 class="display-4 text-dark">Welcome to @GlobalConstants.SystemName!</h1>
-    <div class="col-md-8">
+    <h1 class="display-4 text-center text-dark">Welcome to @GlobalConstants.SystemName!</h1>
+    <div class="col-md-12">
         <div class="row">
             @foreach (var book in this.Model.RandomBooks)
             {
-                <div class="container col-md-6 bookFlip">
+                <div class="container col-md-4 bookFlip">
                     <div class="info bookFlip">
                     </div>
                     <div class="bookFlip mobile-layout">
@@ -26,7 +26,9 @@
                         <div class="preface bookFlip">
                             <div class="content bookFlip">
                                 <div class="header bookFlip">
-                                    <div class="title bookFlip">@book.Title</div>
+                                    <div class="title bookFlip">
+                                        <a asp-controller="Books" asp-action="ById" asp-route-id="@book.Id">@book.Title</a>
+                                        </div>
                                     <div class="icon bookFlip">
                                         <i class="fas fa-chevron-down"></i>
                                     </div>
@@ -44,13 +46,24 @@
             }
         </div>
     </div>
-    <div class="col-md-4">
-        <p class="text-dark">We have:</p>
+</div>
+
+<hr />
+
+<div class="container">
+    <h4 class="text-center text-dark">We have:</h4>
+    <div class="row row-cols-4 ">
         <ul class="list-group">
-            <li class="list-group-item text-dark">Books: @Model.BooksCount</li>
-            <li class="list-group-item text-dark">Authors: @Model.AuthorsCount</li>
-            <li class="list-group-item text-dark">Genres: @Model.GenresCount</li>
-            <li class="list-group-item text-dark">Images: @Model.ImagesCount</li>
+            <li class="list-group-item text-dark text-center">Books: @Model.BooksCount</li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item text-dark text-center">Authors: @Model.AuthorsCount</li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item text-dark text-center">Genres: @Model.GenresCount</li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item text-dark text-center">Images: @Model.ImagesCount</li>
         </ul>
     </div>
 </div>

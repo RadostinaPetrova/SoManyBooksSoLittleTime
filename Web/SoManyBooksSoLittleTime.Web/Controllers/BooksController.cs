@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using SoManyBooksSoLittleTime.Common;
     using SoManyBooksSoLittleTime.Data.Models;
     using SoManyBooksSoLittleTime.Services.Data;
     using SoManyBooksSoLittleTime.Web.ViewModels.Books;
@@ -86,6 +87,29 @@
         {
             var book = this.booksService.GetById<SingleBookViewModel>(id);
             return this.View(book);
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Edit(int id)
+        {
+            var inputModel = this.booksService.GetById<EditBookInputModel>(id);
+            inputModel.Authors = this.authorsService.GetAllAuthorsAsKeyValuePairs();
+            return this.View(inputModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(int id, EditBookInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Authors = this.authorsService.GetAllAuthorsAsKeyValuePairs();
+                return this.View(input);
+            }
+
+            await this.booksService.EditAsync(id, input);
+
+            return this.RedirectToAction(nameof(this.ById), new { id });
         }
     }
 }

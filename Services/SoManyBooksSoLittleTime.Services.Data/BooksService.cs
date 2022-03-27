@@ -77,6 +77,18 @@
             await this.booksRepository.SaveChangesAsync();
         }
 
+        public async Task EditAsync(int id, EditBookInputModel input)
+        {
+            var books = this.booksRepository.All().FirstOrDefault(x=>x.Id == id);
+            books.Title = input.Title;
+            books.Description = input.Description;
+            books.Published = input.Published;
+            books.Rating = input.Rating;
+            books.ISBN = input.ISBN;
+            books.AuthorId = input.AuthorId;
+            await this.booksRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
         {
             var books = this.booksRepository.AllAsNoTracking()
@@ -84,6 +96,17 @@
               .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
               .To<T>().ToList();
             return books;
+        }
+
+        public IEnumerable<T> GetByGenres<T>(IEnumerable<int> genreIds)
+        {
+            var query = this.booksRepository.All().AsQueryable();
+            foreach (var genreId in genreIds)
+            {
+                query = query.Where(x => x.Genres.Any(i => i.GenreId == genreId));
+            }
+
+            return query.To<T>().ToList();
         }
 
         public T GetById<T>(int id)

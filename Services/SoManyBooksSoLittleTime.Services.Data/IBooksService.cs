@@ -16,5 +16,9 @@
         int GetCount();
 
         T GetById<T>(int id);
+
+        Task EditAsync(int id, EditBookInputModel input);
+
+        IEnumerable<T> GetByGenres<T>(IEnumerable<int> genreIds);
     }
 }

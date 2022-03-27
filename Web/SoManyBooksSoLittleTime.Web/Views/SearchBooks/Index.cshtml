@@ -1,0 +1,33 @@
+﻿@using SoManyBooksSoLittleTime.Web.ViewModels.SearchBooks
+@model SearchIndexViewModel
+
+@{
+    ViewData["Title"] = "Search book by genre";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@section Css{
+<link rel="stylesheet" href="~/css/checkBoxInputs.css" asp-append-version="true" />
+}
+
+<form asp-action="List" method="get">
+    <div class="row checkBoxClass">
+        @foreach (var genre in Model.Genres)
+        {
+            <div class="row text-center">
+                <ul class="ks-cboxtags checkBoxClass">
+                    <li>
+                        <input id="genre_@genre.Id"
+                           type="checkbox"
+                           name="Genres"
+                           value="@genre.Id"
+                           class="form-control checkBoxClass" />
+                        <label for="genre_@genre.Id">@genre.Name</label>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+    <button class="btn btn-primary ">Search</button>
+</form>
