@@ -77,6 +77,13 @@
             await this.booksRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var book = this.booksRepository.All().FirstOrDefault(x => x.Id == id);
+            this.booksRepository.Delete(book);
+            await this.booksRepository.SaveChangesAsync();
+        }
+
         public async Task EditAsync(int id, EditBookInputModel input)
         {
             var books = this.booksRepository.All().FirstOrDefault(x=>x.Id == id);

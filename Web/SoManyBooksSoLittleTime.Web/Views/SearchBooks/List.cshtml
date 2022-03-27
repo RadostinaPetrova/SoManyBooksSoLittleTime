@@ -8,16 +8,36 @@
 <h1 class="text-dark">@this.ViewData["Title"]</h1>
 
 <hr />
-<div class="row">
-    @foreach (var book in this.Model.Books)
-    {
-        <div class="media col-md-4">
-            <img src="@book.ImageUrl" width="100" class="mr-3" img-responsive>
-            <div class="media-body">
-                <h5 class="mt-0"><a asp-controller="Books" asp-action="ById" asp-route-id="@book.Id">@book.Title</a></h5>
-                <p class="text-dark">@book.AuthorName</p>
+@if (!Model.Books.Any())
+{
+    <h4>Page-Is-Gone, son of Aragorn, grandson of Arathorn</h4>
+    <p class="font-italic">
+        All that is gold does not glitter,<br>
+        Not all those who wander are lost;<br>
+        The old that is strong does not wither,<br>
+        Deep roots are not reached by the frost.
+    </p>
+    <p class="font-italic">
+        From the ashes a fire shall be woken,<br>
+        A light from the shadows shall spring;<br>
+        Renewed shall be blade that was broken,<br>
+        The crownless again shall be king.
+    </p>
+    <p>— J.R.R. Tolkien, The Fellowship of the Ring</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var book in this.Model.Books)
+        {
+            <div class="media col-md-4">
+                <img src="@book.ImageUrl" width="100" class="mr-3" img-responsive>
+                <div class="media-body">
+                    <h5 class="mt-0"><a asp-controller="Books" asp-action="ById" asp-route-id="@book.Id">@book.Title</a></h5>
+                    <p class="text-dark">@book.AuthorName</p>
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 <hr />

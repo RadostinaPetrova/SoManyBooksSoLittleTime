@@ -44,8 +44,29 @@
                             <a asp-controller="Books" asp-action="Edit" asp-route-id="@Model.Id" class="btn">Edit</a>
                         </li>
                     </ul>
+                    <ul class="postcard__tagbox">
+                        <li class="tag__item play red">
+                            <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+                            </form>
+                            <a class="btn" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                        </li>
+                    </ul>
                 }
             </div>
         </article>
     </div>
 </section>
+
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="postcard text-dark">Do you want to delete "@Model.Title"?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="deleteForm.submit()">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>

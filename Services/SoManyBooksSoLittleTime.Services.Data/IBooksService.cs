@@ -20,5 +20,7 @@
         Task EditAsync(int id, EditBookInputModel input);
 
         IEnumerable<T> GetByGenres<T>(IEnumerable<int> genreIds);
+
+        Task DeleteAsync(int id);
     }
 }
