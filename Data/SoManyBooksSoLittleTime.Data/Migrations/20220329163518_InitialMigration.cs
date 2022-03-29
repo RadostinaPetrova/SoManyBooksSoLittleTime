@@ -62,7 +62,7 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -79,7 +79,7 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -88,24 +88,6 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genres", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Settings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Settings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,13 +202,13 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     AuthorId = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1600)", maxLength: 1600, nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Rating = table.Column<decimal>(type: "decimal(3,2)", nullable: true),
                     Published = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ISBN = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ISBN = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -280,8 +262,8 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     BookId = table.Column<int>(type: "int", nullable: false),
-                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Extension = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -395,11 +377,6 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                 name: "IX_Images_UserId",
                 table: "Images",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Settings_IsDeleted",
-                table: "Settings",
-                column: "IsDeleted");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -424,9 +401,6 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Images");
-
-            migrationBuilder.DropTable(
-                name: "Settings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

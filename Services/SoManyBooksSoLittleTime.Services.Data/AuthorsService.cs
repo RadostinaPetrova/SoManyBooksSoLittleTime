@@ -20,11 +20,11 @@
             return this.authorsRepository.AllAsNoTracking().Select(x => new
             {
                 x.Id,
-                x.Name,
+                x.FullName,
             })
-                .OrderBy(x => x.Name)
+                .OrderBy(x => x.FullName)
                 .ToList()
-                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.FullName));
         }
     }
 }

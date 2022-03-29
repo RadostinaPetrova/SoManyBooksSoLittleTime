@@ -5,21 +5,18 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using SoManyBooksSoLittleTime.Data;
     using SoManyBooksSoLittleTime.Data.Common;
     using SoManyBooksSoLittleTime.Data.Common.Repositories;
     using SoManyBooksSoLittleTime.Data.Models;
     using SoManyBooksSoLittleTime.Data.Repositories;
     using SoManyBooksSoLittleTime.Data.Seeding;
-    using SoManyBooksSoLittleTime.Services.Data;
     using SoManyBooksSoLittleTime.Services.Messaging;
-
-    using CommandLine;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
 
     public static class Program
     {
@@ -51,8 +48,6 @@
         private static async Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
         {
             var sw = Stopwatch.StartNew();
-
-
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
         }

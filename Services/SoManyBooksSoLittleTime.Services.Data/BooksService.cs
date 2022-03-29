@@ -86,7 +86,7 @@
 
         public async Task EditAsync(int id, EditBookInputModel input)
         {
-            var books = this.booksRepository.All().FirstOrDefault(x=>x.Id == id);
+            var books = this.booksRepository.All().FirstOrDefault(x => x.Id == id);
             books.Title = input.Title;
             books.Description = input.Description;
             books.Published = input.Published;

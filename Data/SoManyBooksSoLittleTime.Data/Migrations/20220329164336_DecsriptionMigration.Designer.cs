@@ -12,8 +12,8 @@ using SoManyBooksSoLittleTime.Data;
 namespace SoManyBooksSoLittleTime.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220323074432_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220329164336_DecsriptionMigration")]
+    partial class DecsriptionMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -264,14 +264,16 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -298,10 +300,13 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -313,10 +318,12 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal?>("Rating")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(3,2)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -376,7 +383,9 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -397,10 +406,12 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Extension")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
@@ -415,39 +426,6 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("SoManyBooksSoLittleTime.Data.Models.Setting", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

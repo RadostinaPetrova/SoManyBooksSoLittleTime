@@ -9,6 +9,8 @@
 
     public class GenresService : IGenresService
     {
+        private const int MinGenreCount = 10;
+
         private readonly IDeletableEntityRepository<Genre> genresRepository;
 
         public GenresService(IDeletableEntityRepository<Genre> genresRepository)
@@ -20,7 +22,7 @@
         {
             return this.genresRepository
                 .All()
-                .Where(x => x.Books.Count() >= 1)
+                .Where(x => x.Books.Count >= MinGenreCount)
                 .OrderBy(x => x.Name)
                 .To<T>()
                 .ToList();

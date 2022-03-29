@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -14,6 +13,8 @@
 
     public class GoodreadsScraperService : IGoodreadsScraperService
     {
+        private const string Url = "https://www.goodreads.com/book/show/";
+
         private readonly IConfiguration config;
         private readonly IBrowsingContext context;
 
@@ -121,13 +122,13 @@
         private async Task<int> GetOrCreateAuthorAsync(string authorName)
         {
             var author = this.authorsRepository.AllAsNoTracking()
-                .FirstOrDefault(x => x.Name == authorName);
+                .FirstOrDefault(x => x.FullName == authorName);
 
             if (author == null)
             {
                 author = new Author()
                 {
-                    Name = authorName,
+                    FullName = authorName,
                 };
 
                 await this.authorsRepository.AddAsync(author);
@@ -139,7 +140,7 @@
 
         private BookDto GetBook(int id)
         {
-            var document = this.context.OpenAsync($"https://www.goodreads.com/book/show/{id}").GetAwaiter().GetResult();
+            var document = this.context.OpenAsync($"{Url}{id}").GetAwaiter().GetResult();
 
             if (document.StatusCode == HttpStatusCode.NotFound)
             {

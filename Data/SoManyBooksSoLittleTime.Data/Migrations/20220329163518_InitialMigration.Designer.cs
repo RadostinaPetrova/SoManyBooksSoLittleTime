@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoManyBooksSoLittleTime.Data;
 
@@ -11,9 +12,10 @@ using SoManyBooksSoLittleTime.Data;
 namespace SoManyBooksSoLittleTime.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220329163518_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,8 +301,8 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1600)
+                        .HasColumnType("nvarchar(1600)");
 
                     b.Property<string>("ISBN")
                         .HasMaxLength(13)

@@ -18,7 +18,6 @@
 
         public GetCountsService(IDeletableEntityRepository<Book> booksRepository, IDeletableEntityRepository<Author> authorsRepository, IDeletableEntityRepository<Genre> genresRepository, IRepository<Image> imagesRepository)
         {
-
             this.booksRepository = booksRepository;
             this.authorsRepository = authorsRepository;
             this.genresRepository = genresRepository;

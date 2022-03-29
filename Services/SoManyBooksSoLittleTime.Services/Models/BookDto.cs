@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace SoManyBooksSoLittleTime.Services.Models
+﻿namespace SoManyBooksSoLittleTime.Services.Models
 {
+    using System.Collections.Generic;
+
     public class BookDto
     {
         public BookDto()
