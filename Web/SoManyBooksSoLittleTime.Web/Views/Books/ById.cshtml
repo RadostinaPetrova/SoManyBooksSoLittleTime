@@ -17,7 +17,7 @@
                 <img class="postcard__img" src="@Model.ImageUrl" alt="@Model.Title" />
             </a>
             <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue"><a>By @Model.AuthorName</a></h1>
+                <h1 class="postcard__title blue"><a>By @Model.AuthorFullName</a></h1>
                 <div class="postcard__subtitle small">
                     <time datetime="DD.MM.YYYY">
                         <i class="fas fa-calendar-alt mr-2"></i>Published: @Model.Published.ToShortDateString()

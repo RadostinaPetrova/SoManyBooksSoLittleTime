@@ -14,7 +14,7 @@
 
         public int AuthorId { get; set; }
 
-        public string AuthorName { get; set; }
+        public string AuthorFullName { get; set; }
 
         public string ImageUrl { get; set; }
 
@@ -27,9 +27,7 @@
                  opt.MapFrom(x =>
                          x.Images.FirstOrDefault().ImageUrl != null ?
                          x.Images.FirstOrDefault().ImageUrl :
-                         "/images/books/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension))
-                .ForMember(x => x.Description, opt =>
-                  opt.MapFrom(x => x.Description.Substring(0, 150)));
+                         "/images/books/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
         }
     }
 }

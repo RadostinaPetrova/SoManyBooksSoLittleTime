@@ -14,7 +14,7 @@
 
         public string Title { get; set; }
 
-        public string AuthorName { get; set; }
+        public string AuthorFullName { get; set; }
 
         public string UserUserName { get; set; }
 

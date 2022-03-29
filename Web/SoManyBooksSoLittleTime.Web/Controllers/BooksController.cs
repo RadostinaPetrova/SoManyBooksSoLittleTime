@@ -1,7 +1,6 @@
 ﻿namespace SoManyBooksSoLittleTime.Web.Controllers
 {
     using System;
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -19,13 +18,15 @@
         private readonly IBooksService booksService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
+        private readonly IShortStringService shortStringService;
 
-        public BooksController(IAuthorsService authorsService, IBooksService booksService, UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
+        public BooksController(IAuthorsService authorsService, IBooksService booksService, UserManager<ApplicationUser> userManager, IWebHostEnvironment environment, IShortStringService shortStringService)
         {
             this.authorsService = authorsService;
             this.booksService = booksService;
             this.userManager = userManager;
             this.environment = environment;
+            this.shortStringService = shortStringService;
         }
 
         [Authorize]

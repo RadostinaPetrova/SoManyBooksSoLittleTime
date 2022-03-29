@@ -66,6 +66,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
 
             services.AddTransient<IGetCountsService, GetCountsService>();
+            services.AddTransient<IShortStringService, ShortStringService>();
             services.AddTransient<IAuthorsService, AuthorsService>();
             services.AddTransient<IBooksService, BooksService>();
             services.AddTransient<IGoodreadsScraperService, GoodreadsScraperService>();

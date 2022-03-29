@@ -5,7 +5,8 @@
     public class BookGenreInputModel
     {
         [Required]
-        [MinLength(5)]
+        [MinLength(3)]
+        [Display(Name = "Genres*")]
         public string GenreName { get; set; }
     }
 }

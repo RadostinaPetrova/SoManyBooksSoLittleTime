@@ -16,7 +16,7 @@
 
         public int AuthorId { get; set; }
 
-        public string AuthorName { get; set; }
+        public string AuthorFullName { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
