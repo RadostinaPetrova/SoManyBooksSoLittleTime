@@ -1,12 +1,11 @@
-﻿namespace SoManyBooksSoLittleTime.Web.Controllers
+﻿namespace SoManyBooksSoLittleTime.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
+
     using Microsoft.AspNetCore.Mvc;
     using SoManyBooksSoLittleTime.Services;
 
-    // TODO: Move in administration area
-    public class ImportBooksController : BaseController
+    public class ImportBooksController : AdministrationController
     {
         private readonly IGoodreadsScraperService goodreadsScraperService;
 
@@ -14,17 +13,16 @@
         {
             this.goodreadsScraperService = goodreadsScraperService;
         }
-        
-        [Authorize]
+
         public IActionResult Index()
         {
             return this.View();
         }
 
-        [Authorize]
         public async Task<IActionResult> Add()
         {
-            await this.goodreadsScraperService.PopulateDbWithBooksAsync(100);
+            int booksCount = 10000;
+            await this.goodreadsScraperService.PopulateDbWithBooksAsync(booksCount);
 
             return this.Redirect("/");
         }

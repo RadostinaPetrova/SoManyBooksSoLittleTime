@@ -27,7 +27,7 @@
                 AuthorsCount = countsDto.AuthorsCount,
                 GenresCount = countsDto.GenresCount,
                 ImagesCount = countsDto.ImagesCount,
-                RandomBooks = this.booksService.GetRandom<IndexPageBookViewModel>(10),
+                RandomBooks = this.booksService.GetRandom<IndexPageBookViewModel>(12),
             };
 
             return this.View(viewModel);
