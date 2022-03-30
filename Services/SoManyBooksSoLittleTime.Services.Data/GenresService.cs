@@ -9,7 +9,7 @@
 
     public class GenresService : IGenresService
     {
-        private const int MinGenreCount = 10;
+        private const int MinGenreCount = 5;
 
         private readonly IDeletableEntityRepository<Genre> genresRepository;
 

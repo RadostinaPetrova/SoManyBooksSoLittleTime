@@ -107,6 +107,11 @@
 
         public IEnumerable<T> GetByGenres<T>(IEnumerable<int> genreIds)
         {
+            if (genreIds == null)
+            {
+                genreIds = new List<int>();
+            }
+
             var query = this.booksRepository.All().AsQueryable();
             foreach (var genreId in genreIds)
             {

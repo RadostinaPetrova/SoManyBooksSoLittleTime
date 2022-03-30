@@ -1,0 +1,54 @@
+﻿@using SoManyBooksSoLittleTime.Web.ViewModels.Contacts
+@model ContactFormViewModel
+@{
+    this.ViewData["Title"] = "Contact us";
+}
+
+<div class="container">
+    <div class=" text-center mt-5">
+        <h2> Contact us</h2>
+        <h6>Got a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</h6>
+    </div>
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label asp-for="Name"></label>
+                                                <input asp-for="Name" class="form-control" />
+                                                <span asp-validation-for="Name" class="text-danger"></span>
+                                            </div>
+                                            <div class="row">
+                                                <label asp-for="Email"></label>
+                                                <input asp-for="Email" class="form-control" value="@this.User.Identity.Name" />
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                            <div class="row">
+                                                <label asp-for="Title"></label>
+                                                <input asp-for="Title" class="form-control" />
+                                                <span asp-validation-for="Title" class="text-danger"></span>
+                                            </div>
+                                            <div class="row">
+                                                <label asp-for="Content"></label>
+                                                <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+                                                <span asp-validation-for="Content" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
