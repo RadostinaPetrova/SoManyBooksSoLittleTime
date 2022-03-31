@@ -27,6 +27,7 @@
                           {
                               new RolesSeeder(),
                               new GenresSeeder(),
+                              new FaqSeeder(),
                           };
 
             foreach (var seeder in seeders)

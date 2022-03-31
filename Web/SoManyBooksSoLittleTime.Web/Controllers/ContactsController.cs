@@ -1,5 +1,6 @@
 ﻿namespace SoManyBooksSoLittleTime.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
@@ -46,11 +47,11 @@
             await this.contactsRepository.SaveChangesAsync();
 
             await this.emailSender.SendEmailAsync(
-                model.Email,
+                GlobalConstants.SystemEmail,
                 model.Name,
                 GlobalConstants.SystemEmail,
                 model.Title,
-                model.Content);
+                model.Content + "Sender email: " + model.Email);
 
             this.TempData[RedirectedFromContactForm] = true;
 

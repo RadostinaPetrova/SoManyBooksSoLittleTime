@@ -35,6 +35,8 @@
 
         public DbSet<ContactForm> ContactForms { get; set; }
 
+        public DbSet<FrequentlyAskedQuestion> FrequentlyAskedQuestions { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

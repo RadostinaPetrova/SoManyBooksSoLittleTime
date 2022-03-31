@@ -20,7 +20,7 @@
                 <h1 class="postcard__title blue"><a>By @Model.AuthorFullName</a></h1>
                 <div class="postcard__subtitle small">
                     <time datetime="DD.MM.YYYY">
-                        <i class="fas fa-calendar-alt mr-2"></i>Published: @Model.Published.ToShortDateString()
+                        <i class="fas fa-calendar-alt mr-2"></i>Published: @Model.Published.ToString("dd.mm.yyyy")
                     </time>
                     <i class="fa fa-star mr-2"></i>Raiting: @Model.Rating
                 </div>
