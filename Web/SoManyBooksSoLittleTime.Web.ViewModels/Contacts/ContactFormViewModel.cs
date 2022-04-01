@@ -6,6 +6,7 @@
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your name")]
         [Display(Name = "Your name")]
+        [StringLength(40, ErrorMessage = "Name should be between {2} and {1} symbols.", MinimumLength = 2)]
         public string Name { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your email")]

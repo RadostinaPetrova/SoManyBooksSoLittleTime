@@ -7,7 +7,6 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using SoManyBooksSoLittleTime.Common;
     using SoManyBooksSoLittleTime.Data.Models;
     using SoManyBooksSoLittleTime.Services.Data;
     using SoManyBooksSoLittleTime.Web.ViewModels.Books;
@@ -88,14 +87,6 @@
         {
             var book = this.booksService.GetById<SingleBookViewModel>(id);
             return this.View(book);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await this.booksService.DeleteAsync(id);
-            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

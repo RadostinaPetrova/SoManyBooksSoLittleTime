@@ -46,7 +46,7 @@
                     </ul>
                     <ul class="postcard__tagbox">
                         <li class="tag__item play red">
-                            <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+                            <form method="post" asp-area="Administration" asp-controller="DeleteBook" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
                             </form>
                             <a class="btn" data-toggle="modal" data-target="#deleteModal">Delete</a>
                         </li>
