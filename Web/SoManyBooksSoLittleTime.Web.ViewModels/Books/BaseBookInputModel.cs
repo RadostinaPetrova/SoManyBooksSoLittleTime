@@ -9,7 +9,7 @@
     public class BaseBookInputModel
     {
         [Required(ErrorMessage = "Title is required")]
-        [MinLength(2)]
+        [StringLength(100, ErrorMessage = "Description should be between {2} and {1} symbols.", MinimumLength = 2)]
         [Display(Name ="Title*")]
         public string Title { get; set; }
 
@@ -18,7 +18,7 @@
         public int AuthorId { get; set; }
 
         [Required(ErrorMessage = "Description is required")]
-        [MinLength(50)]
+        [StringLength(1500, ErrorMessage = "Description should be between {2} and {1} symbols.", MinimumLength = 50)]
         [Display(Name = "Description*")]
         public string Description { get; set; }
 

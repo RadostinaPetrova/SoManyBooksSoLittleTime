@@ -52,7 +52,7 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Author author)
+        public async Task<IActionResult> Create([Bind("FullName,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Author author)
         {
             if (this.ModelState.IsValid)
             {
@@ -86,7 +86,7 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Author author)
+        public async Task<IActionResult> Edit(int id, [Bind("FullName,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Author author)
         {
             if (id != author.Id)
             {

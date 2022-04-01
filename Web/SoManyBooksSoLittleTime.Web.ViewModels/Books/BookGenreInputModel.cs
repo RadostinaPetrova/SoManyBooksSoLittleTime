@@ -5,7 +5,7 @@
     public class BookGenreInputModel
     {
         [Required]
-        [MinLength(3)]
+        [StringLength(150, ErrorMessage = "Genre should be between {2} and {1} symbols.", MinimumLength = 3)]
         [Display(Name = "Genres*")]
         public string GenreName { get; set; }
     }

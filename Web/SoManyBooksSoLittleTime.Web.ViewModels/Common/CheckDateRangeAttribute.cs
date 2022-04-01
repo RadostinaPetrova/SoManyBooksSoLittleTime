@@ -9,12 +9,12 @@
         {
             DateTime dt = (DateTime)value;
 
-            if (dt >= DateTime.UtcNow)
+            if (dt <= DateTime.UtcNow)
             {
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(this.ErrorMessage ?? "Make sure your date is >= than today");
+            return new ValidationResult(this.ErrorMessage ?? "Make sure your date is <= than today");
         }
     }
 }
