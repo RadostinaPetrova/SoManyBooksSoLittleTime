@@ -90,29 +90,6 @@
             return this.View(book);
         }
 
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult Edit(int id)
-        {
-            var inputModel = this.booksService.GetById<EditBookInputModel>(id);
-            inputModel.Authors = this.authorsService.GetAllAuthorsAsKeyValuePairs();
-            return this.View(inputModel);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public async Task<IActionResult> Edit(int id, EditBookInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.Authors = this.authorsService.GetAllAuthorsAsKeyValuePairs();
-                return this.View(input);
-            }
-
-            await this.booksService.EditAsync(id, input);
-
-            return this.RedirectToAction(nameof(this.ById), new { id });
-        }
-
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Delete(int id)
