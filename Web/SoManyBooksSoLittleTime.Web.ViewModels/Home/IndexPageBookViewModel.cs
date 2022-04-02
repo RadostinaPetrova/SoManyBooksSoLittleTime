@@ -28,7 +28,8 @@
                          x.Images.FirstOrDefault().ImageUrl != null ?
                          x.Images.FirstOrDefault().ImageUrl :
                          "/images/books/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension))
-                 .ForMember(x => x.Description, opt => opt.MapFrom(x => x.Description.Substring(0, 150)));
+                 .ForMember(x => x.Description, opt =>
+                 opt.MapFrom(x => x.Description.Length > 200 ? x.Description.Substring(0, 200) : x.Description));
         }
     }
 }

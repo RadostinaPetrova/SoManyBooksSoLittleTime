@@ -27,7 +27,7 @@
         public decimal Rating { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:mm/dd/yyyy}")]
         [CheckDateRangeAttribute(ErrorMessage = "Date must be less than or equal to Today's Date")]
         public DateTime Published { get; set; }
 
