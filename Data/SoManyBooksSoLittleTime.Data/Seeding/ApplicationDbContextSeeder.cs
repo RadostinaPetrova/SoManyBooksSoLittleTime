@@ -28,6 +28,7 @@
                               new RolesSeeder(),
                               new GenresSeeder(),
                               new FaqSeeder(),
+                              new ArticleCategoriesSeeder(),
                           };
 
             foreach (var seeder in seeders)

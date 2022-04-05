@@ -72,6 +72,8 @@
             services.AddTransient<IGoodreadsScraperService, GoodreadsScraperService>();
             services.AddTransient<IGenresService, GenresService>();
             services.AddTransient<IFaqService, FaqService>();
+            services.AddTransient<IArticlesService, ArticlesService>();
+            services.AddTransient<IArticleCategoriesService, ArticleCategoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

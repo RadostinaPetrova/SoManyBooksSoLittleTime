@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoManyBooksSoLittleTime.Data;
 
@@ -11,9 +12,10 @@ using SoManyBooksSoLittleTime.Data;
 namespace SoManyBooksSoLittleTime.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220404124054_AddArticleAndArticleCategory")]
+    partial class AddArticleAndArticleCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,10 +271,6 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -546,6 +544,9 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("ArticleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
@@ -567,6 +568,8 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
 
                     b.HasIndex("BookId");
 
@@ -683,6 +686,10 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
 
             modelBuilder.Entity("SoManyBooksSoLittleTime.Data.Models.Image", b =>
                 {
+                    b.HasOne("SoManyBooksSoLittleTime.Data.Models.Article", null)
+                        .WithMany("Images")
+                        .HasForeignKey("ArticleId");
+
                     b.HasOne("SoManyBooksSoLittleTime.Data.Models.Book", "Book")
                         .WithMany("Images")
                         .HasForeignKey("BookId")
@@ -705,6 +712,11 @@ namespace SoManyBooksSoLittleTime.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("SoManyBooksSoLittleTime.Data.Models.Article", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("SoManyBooksSoLittleTime.Data.Models.ArticleCategory", b =>
