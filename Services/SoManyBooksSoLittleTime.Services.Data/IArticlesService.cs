@@ -7,8 +7,12 @@
 
     public interface IArticlesService
     {
-        Task CreateAsync(CreateArticleInputModel input, string userId, string imagePath);
+        Task CreateAsync(CreateArticleInputModel input, string userId, string imageInputPath);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
+        IEnumerable<T> GetAll<T>();
+
+        T GetById<T>(int id);
+
+        Task EditAsync(int id, EditArticleInputModel input);
     }
 }

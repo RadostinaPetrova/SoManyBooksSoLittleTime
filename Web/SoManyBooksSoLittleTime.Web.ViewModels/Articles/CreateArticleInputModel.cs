@@ -24,7 +24,7 @@
         public IEnumerable<ArticleCategoryViewModel> Categories { get; set; }
 
         [Required(ErrorMessage = "The field is required")]
-        [Display(Name = "Image (.jpg, .png, .gif)")]
+        [Display(Name = "Image (.png)")]
         public IFormFile Image { get; set; }
     }
 }

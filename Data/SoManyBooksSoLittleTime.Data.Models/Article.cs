@@ -24,7 +24,6 @@
 
         public virtual ArticleCategory Category { get; set; }
 
-        [Required]
         public string ImagePath { get; set; }
     }
 }

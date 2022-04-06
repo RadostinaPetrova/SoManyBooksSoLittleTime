@@ -12,15 +12,15 @@
 
     public class ArticlesService : IArticlesService
     {
-        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
-        private readonly IDeletableEntityRepository<Article> articleRepository;
+        private readonly string[] allowedExtensions = new[] { "png", };
+        private readonly IDeletableEntityRepository<Article> articlesRepository;
 
-        public ArticlesService(IDeletableEntityRepository<Article> articleRepository)
+        public ArticlesService(IDeletableEntityRepository<Article> articlesRepository)
         {
-            this.articleRepository = articleRepository;
+            this.articlesRepository = articlesRepository;
         }
 
-        public async Task CreateAsync(CreateArticleInputModel input, string userId, string imagePath)
+        public async Task CreateAsync(CreateArticleInputModel input, string userId, string imageInputPath)
         {
             var article = new Article
             {
@@ -30,8 +30,12 @@
                 CategoryId = input.CategoryId,
             };
 
-            Directory.CreateDirectory($"{imagePath}/articles/");
+            await this.articlesRepository.AddAsync(article);
+            await this.articlesRepository.SaveChangesAsync();
 
+            Directory.CreateDirectory($"{imageInputPath}/articles/");
+
+            var articleId = article.Id;
             var extension = Path.GetExtension(input.Image.FileName).TrimStart('.');
 
             if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
@@ -39,23 +43,37 @@
                 throw new System.Exception($"Invalid image extension {extension}");
             }
 
-            var physicalPath = $"{imagePath}/articles/{article.Id}.{extension}";
+            var physicalPath = $"{imageInputPath}/articles/{articleId}.{extension}";
             using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
             await input.Image.CopyToAsync(fileStream);
 
             article.ImagePath = physicalPath;
-
-            await this.articleRepository.AddAsync(article);
-            await this.articleRepository.SaveChangesAsync();
+            await this.articlesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
+        public async Task EditAsync(int id, EditArticleInputModel input)
         {
-            var articles = this.articleRepository.AllAsNoTracking()
+            var articles = this.articlesRepository.All().FirstOrDefault(x => x.Id == id);
+            articles.Title = input.Title;
+            articles.Content = input.Content;
+            articles.CategoryId = input.CategoryId;
+
+            await this.articlesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            var articles = this.articlesRepository.AllAsNoTracking()
               .OrderByDescending(x => x.Id)
-              .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
               .To<T>().ToList();
             return articles;
+        }
+
+        public T GetById<T>(int id)
+        {
+            var article = this.articlesRepository.AllAsNoTracking().Where(x => x.Id == id).To<T>().FirstOrDefault();
+
+            return article;
         }
     }
 }

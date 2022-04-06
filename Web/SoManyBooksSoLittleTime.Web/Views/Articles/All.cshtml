@@ -1,0 +1,53 @@
+﻿@using SoManyBooksSoLittleTime.Common
+@using SoManyBooksSoLittleTime.Web.ViewModels.Articles
+@model ArticlesListViewModel
+
+@{
+    this.ViewData["Title"] = "Articles";
+}
+
+@section Css{
+<link rel="stylesheet" href="~/css/styleBookById.css" asp-append-version="true" />
+}
+
+<section class="light">
+    <div class="container py-2">
+        <div class="h1 text-center text-dark" id="pageHeaderTitle">@this.ViewData["Title"]</div>
+        @foreach (var article in Model.Articles)
+        {
+            <article class="postcard light blue">
+                <a class="postcard__img_link">
+                    <img class="postcard__img" src="@article.ImagePath" alt="@article.ImagePath" />
+                </a>
+                <div class="postcard__text t-dark">
+                    <h1 class="postcard__title blue"><a>@article.Title</a></h1>
+                    <div class="postcard__bar"></div>
+                    <div class="postcard__preview-txt">@article.Content</div>
+                    <ul class="postcard__tagbox">
+                        <li class="tag__item"><i class="fas fa-tag mr-2">@article.CategoryTitle</i></li>
+                    </ul>
+                    <ul class="postcard__tagbox">
+                        <li class="tag__item play blue">
+                            <i class="fas fa-user mr-2"></i>Added by: @(article.UserUserName ?? "Admin")
+                        </li>
+                    </ul>
+                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item play blue">
+                                <a asp-area="Administration" asp-controller="Articles" asp-action="Edit" asp-route-id="@article.Id" class="btn">Edit</a>
+                            </li>
+                        </ul>
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item play red">
+                                <form method="post" asp-area="Administration" asp-controller="DeleteBook" asp-action="Delete" id="deleteForm" asp-route-id="@article.Id">
+                                </form>
+                                <a class="btn" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </article>
+        }
+    </div>
+</section>

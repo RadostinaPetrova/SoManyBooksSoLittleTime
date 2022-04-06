@@ -32,21 +32,6 @@
             this.environment = environment;
         }
 
-        // GET: Administration/Articles
-        public async Task<IActionResult> Index(int id = 1)
-        {
-            /*var applicationDbContext = _context.Articles.Include(a => a.Category).Include(a => a.User);
-            return View(await applicationDbContext.ToListAsync());*/
-
-            if (id <= 0)
-            {
-                return this.NotFound();
-            }
-
-            var viewModel = new ArticleInListViewModel();
-            return this.View(viewModel);
-        }
-
         // GET: Administration/Articles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -90,7 +75,7 @@
 
             try
             {
-                await this.articlesService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/articles");
+                await this.articlesService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
             }
             catch (Exception ex)
             {
@@ -99,13 +84,13 @@
                 return this.View(input);
             }
 
-            return this.RedirectToAction("Index");
+            return this.RedirectToAction("All", new { area = "" });
         }
 
         // GET: Administration/Articles/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            /*if (id == null)
             {
                 return NotFound();
             }
@@ -117,15 +102,27 @@
             }
             ViewData["CategoryId"] = new SelectList(_context.ArticleCategories, "Id", "Title", article.CategoryId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", article.UserId);
-            return View(article);
+            return View(article);*/
+            var inputModel = this.articlesService.GetById<EditArticleInputModel>(id);
+            inputModel.Categories = this.articleCategoriesService.GetAllArticleCategories();
+            return this.View(inputModel);
         }
 
         // POST: Administration/Articles/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Title,Content,UserId,CategoryId,ImagePath,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Article article)
+        public async Task<IActionResult> Edit(int id, EditArticleInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Categories = this.articleCategoriesService.GetAllArticleCategories();
+                return this.View(input);
+            }
+
+            await this.articlesService.EditAsync(id, input);
+            return this.RedirectToAction("All", new { area = "" });
+        }
+        /*public async Task<IActionResult> Edit(int id, [Bind("Title,Content,UserId,CategoryId,ImagePath,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Article article)
         {
             if (id != article.Id)
             {
@@ -155,7 +152,7 @@
             ViewData["CategoryId"] = new SelectList(_context.ArticleCategories, "Id", "Title", article.CategoryId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", article.UserId);
             return View(article);
-        }
+        }*/
 
         // GET: Administration/Articles/Delete/5
         public async Task<IActionResult> Delete(int? id)
