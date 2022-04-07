@@ -17,15 +17,13 @@
         private readonly IBooksService booksService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
-        private readonly IShortStringService shortStringService;
 
-        public BooksController(IAuthorsService authorsService, IBooksService booksService, UserManager<ApplicationUser> userManager, IWebHostEnvironment environment, IShortStringService shortStringService)
+        public BooksController(IAuthorsService authorsService, IBooksService booksService, UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
         {
             this.authorsService = authorsService;
             this.booksService = booksService;
             this.userManager = userManager;
             this.environment = environment;
-            this.shortStringService = shortStringService;
         }
 
         [Authorize]

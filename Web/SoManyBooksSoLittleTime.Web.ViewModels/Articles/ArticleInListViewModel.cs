@@ -5,7 +5,7 @@
     using SoManyBooksSoLittleTime.Services.Mapping;
 
     public class ArticleInListViewModel : IMapFrom<Article>, IHaveCustomMappings
-    { 
+    {
         public int Id { get; set; }
 
         public string Title { get; set; }
