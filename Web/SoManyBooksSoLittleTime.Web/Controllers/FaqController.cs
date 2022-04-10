@@ -1,11 +1,8 @@
 ﻿namespace SoManyBooksSoLittleTime.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using SoManyBooksSoLittleTime.Data;
     using SoManyBooksSoLittleTime.Services.Data;
     using SoManyBooksSoLittleTime.Web.ViewModels.Faq;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class FaqController : BaseController
     {

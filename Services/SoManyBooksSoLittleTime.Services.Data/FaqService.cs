@@ -5,7 +5,6 @@
 
     using SoManyBooksSoLittleTime.Data.Common.Repositories;
     using SoManyBooksSoLittleTime.Data.Models;
-    using SoManyBooksSoLittleTime.Web.ViewModels.Faq;
     using SoManyBooksSoLittleTime.Services.Mapping;
 
     public class FaqService : IFaqService
