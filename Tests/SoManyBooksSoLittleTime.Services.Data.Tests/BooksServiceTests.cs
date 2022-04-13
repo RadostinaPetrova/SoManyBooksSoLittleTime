@@ -232,7 +232,7 @@
         }
 
         [Fact]
-        public async Task EditAsyncShouldThrowExceptionIfPrividedIdIsNotCorrect()
+        public async Task EditAsyncShouldThrowExceptionIfProvidedIdIsNotCorrect()
         {
             var bytes = Encoding.UTF8.GetBytes("This is a dummy file");
             IFormFile image = new FormFile(new MemoryStream(bytes), 0, bytes.Length, "Data", "dummy.png");
@@ -360,51 +360,5 @@
 
             Assert.Equal(0, result.ToList().Count);
         }
-
-        /*[Fact]
-        public void GetAllByGenreWorksCorrect()
-        {
-            var bytes = Encoding.UTF8.GetBytes("This is a dummy file");
-            IFormFile image = new FormFile(new MemoryStream(bytes), 0, bytes.Length, "Data", "dummy.png");
-
-            var list = new List<Book>();
-
-            var model = new CreateBookInputModel
-            {
-                Title = "Test Title",
-                Description = "Description should be at least 50 symbols. Oh, well...",
-                AuthorId = 1,
-                Rating = 5,
-                Published = DateTime.UtcNow,
-                ISBN = "1234567890",
-                Genres = new List<BookGenreInputModel>
-                {
-                    new BookGenreInputModel
-                    { GenreName = "Genre Name" },
-                },
-                Images = new List<IFormFile>
-                {
-                    image,
-                },
-            };
-
-            var mockRepoBook = new Mock<IDeletableEntityRepository<Book>>();
-            var mockRepoGenre = new Mock<IDeletableEntityRepository<Genre>>();
-            mockRepoBook.Setup(x => x.All()).Returns(list.AsQueryable());
-            mockRepoBook.Setup(x => x.AddAsync(It.IsAny<Book>())).Callback((Book book) => list.Add(book));
-            mockRepoGenre.Setup(x => x.AddAsync(It.IsAny<Genre>())).Callback((Genre genre) => );
-
-            var service = new BooksService(mockRepoBook.Object, mockRepoGenre.Object);
-
-            var userId = "a29916d1-be82-41c5-a189-7366a9502467";
-            var imagePath = "C:\\Users\\User\\source\\repos\\SoManyBooksSoLittleTime\\Web\\SoManyBooksSoLittleTime.Web\\wwwroot/images";
-
-            service.CreateAsync(model, userId, imagePath);
-
-            IEnumerable<int> ids = new List<int>{ 1 };
-            var bookByGenre = service.GetByGenres<BookInListViewModel>(ids);
-
-            Assert.Equal(1, bookByGenre.Count());
-        }*/
     }
 }

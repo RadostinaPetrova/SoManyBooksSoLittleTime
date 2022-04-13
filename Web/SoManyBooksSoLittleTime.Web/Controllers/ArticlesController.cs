@@ -15,17 +15,8 @@
             this.articlesService = articlesService;
         }
 
-        // GET: Administration/Articles
         public async Task<IActionResult> All()
         {
-            /*var applicationDbContext = _context.Articles.Include(a => a.Category).Include(a => a.User);
-            return View(await applicationDbContext.ToListAsync());*/
-
-            /*if (id <= 0)
-            {
-                return this.NotFound();
-            }*/
-
             var viewModel = new ArticlesListViewModel { Articles = this.articlesService.GetAll<ArticleInListViewModel>(), };
             return this.View(viewModel);
         }
